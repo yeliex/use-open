@@ -1,0 +1,20 @@
+{
+    "extends": ["@tsconfig/strictest", "@tsconfig/node20"],
+    "compileOnSave": false,
+    "compilerOptions": {
+        "module": "ES2022",
+        "moduleResolution": "node",
+        "importHelpers": true,
+        "isolatedModules": true,
+        "verbatimModuleSyntax": true,
+        "exactOptionalPropertyTypes": false,
+        "noUncheckedIndexedAccess": false,
+        "noPropertyAccessFromIndexSignature": false
+    },
+    "include": [],
+    "references": [
+        {
+            "path": "./scripts/tsconfig.json"
+        }
+    ]
+}
