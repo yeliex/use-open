@@ -17,7 +17,7 @@ const Page = () => {
 
     return (
         <>
-            <button>
+            <button onClick={() => opener.open()}>
                 click
             </button>
             <Modal opener={opener} />
@@ -49,7 +49,7 @@ const Modal = (props: IProps & {
         >
             modal
             <button
-                onClick={() => openProps.onConfirm() && openProps.close() }
+                onClick={() => openProps.onConfirm() && openProps.close()}
             >
                 click
             </button>

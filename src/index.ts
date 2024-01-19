@@ -6,40 +6,40 @@ export class OpenInstance<OpenProps = unknown> extends EventTarget {
         props: OpenProps;
     } = { opened: false, props: {} as OpenProps };
 
-    subscribe(callback: any) {
+    subscribe = (callback: any) => {
         this.addEventListener('change', callback);
 
         return () => {
             this.removeEventListener('change', callback);
         };
-    }
+    };
 
-    getSnapshot() {
+    getSnapshot = () => {
         return this.state;
-    }
+    };
 
-    getServerSnapshot() {
+    getServerSnapshot = () => {
         return {
             opened: false,
             props: {} as OpenProps,
         };
-    }
+    };
 
-    private change(data: typeof this.state) {
+    private change = (data: typeof this.state) => {
         this.state = { ...data };
         this.dispatchEvent(new Event('change'));
-    }
+    };
 
-    open(props: OpenProps) {
+    open = (props: OpenProps) => {
         if (this.state.opened) {
             throw new Error('Modal opened, please close first');
         }
         this.change({ opened: true, props });
-    }
+    };
 
-    close() {
+    close = () => {
         this.change({ opened: false, props: {} as OpenProps });
-    }
+    };
 }
 
 export const useOpen = <OpenProps = unknown>(instance?: OpenInstance<OpenProps>) => {
