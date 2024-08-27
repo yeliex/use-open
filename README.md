@@ -57,3 +57,40 @@ const Modal = (props: IProps & {
     ), document.body);
 };
 ```
+
+### Shared open status/Single instance mode
+
+```tsx
+// components/Modal.tsx
+interface OpenProps {
+    
+}
+
+export const opener = createOpener<OpenProps>();
+
+const Modal = () => {
+    const openProps = useOpenProps(opener);
+    
+    return (
+        <AntModal />
+    )
+}
+
+// page/index.tsx
+import Modal, { opener } from 'components/Modal';
+
+const Page = () => {
+    const handler = () => {
+        opener.open();
+    }
+    
+    return (
+        <>
+            <button onClick={handler}>
+                click
+            </button>
+            <Modal />
+        </>
+    )
+}
+```

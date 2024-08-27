@@ -42,15 +42,15 @@ export class OpenInstance<OpenProps = unknown> extends EventTarget {
     };
 }
 
+export const createOpener = <OpenProps = unknown>() => {
+    return new OpenInstance<OpenProps>();
+};
+
 export const useOpen = <OpenProps = unknown>(instance?: OpenInstance<OpenProps>) => {
     const ref = useRef<OpenInstance<OpenProps>>();
 
     if (!ref.current) {
-        if (instance) {
-            ref.current = instance;
-        } else {
-            ref.current = new OpenInstance();
-        }
+        ref.current = instance || createOpener();
     }
 
     return ref.current!;
